@@ -1,6 +1,6 @@
 FROM node:14
-WORKDIR /usr/src/app
-COPY package.json ./
+WORKDIR /app
+COPY . /app
 RUN npm install
-CMD npm run dev
+CMD node index.js
 EXPOSE 5056
