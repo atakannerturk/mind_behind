@@ -25,8 +25,13 @@ function verifyToken(req, res, next) {
     if (err) {
       return next(new ErrorHandler(401, 'Token has expired'));
     }
-    try {
-      req.user = decoded.data;
+    try {   
+      const { id, role } = decoded.data;
+      req.user = {
+        ...req.user,
+        id,
+        role
+      };
       next();
     } catch (error) {
       return next(new ErrorHandler(500, 'User not found'));

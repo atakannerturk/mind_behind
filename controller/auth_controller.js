@@ -6,8 +6,7 @@ const {generateToken} = require("../middleware/jwt_middleware")
 const login = async (req, res, next) => {
     try {
       const data = await tryLogin(req.body.user_name,req.body.password);
-      const token = generateToken({ 'id': data.id ,'password':data.password});
-      req.user = data    
+      const token = generateToken({ 'id': data.id ,'password':data.password,'role':data.role});
       return res.cookie("access_token", token, {
         httpOnly: true,
       })
